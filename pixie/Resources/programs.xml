@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pixie>
+  <program
+    name="notepad"
+    filename="notepad.exe"
+    arguments="%file"
+  /> 
+ <program
+    name="roofright"
+    filename="roofright.exe"
+    workingdirectory="c:\program files\roofright"
+    arguments="-q %q"
+  />
+</pixie>

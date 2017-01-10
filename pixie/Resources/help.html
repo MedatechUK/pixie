@@ -1,0 +1,237 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> Pixie Help </TITLE>
+<META NAME="Author" CONTENT="Si">
+<META NAME="Keywords" CONTENT="Pixie">
+<META NAME="Description" CONTENT="">
+        <style type="text/css">
+            .style1
+            {
+                width: 400px;
+            }
+            .style2
+            {
+                width: 100%;
+            }
+            .style3
+            {
+                width: 10px;
+            }
+            .style5
+            {
+                width: 103px;
+                height: 41px;
+                text-align: center;
+            }
+            .style6
+            {
+                height: 41px;
+            }
+            .style7
+            {
+                width: 103px;
+                text-align: center;
+            }
+            .style8
+            {
+                width: 123px;
+                text-align: center;
+            }
+            </style>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<h1>pixie://</h1>
+<p>
+Protocol for http binary launch on the localhost.
+<br>
+By Simon Barnett.
+</p>
+<H2>Syntax</H2>
+    <table class="style1">
+        <tr>
+            <td style="text-align: right">
+                pixie://</td>
+            <td style="text-align: center">
+                Command</td>
+            <td>
+                {?</td>
+            <td style="text-align: center">
+                paramN=value</td>
+            <td>
+                {&amp;paramN=value}}</td>
+        </tr>
+    </table>
+    <br />
+    <table class="style2">
+        
+        <tr>
+            <td colspan="2">
+                <H3>Command:</H3></td>
+        </tr>
+        <tr>
+            <td class="style3">
+                &nbsp;</td>
+            <td>
+                Either the name of a program defined in the <a href="pixie://CONFIG">Config</a> 
+                file, or one of the following predefined commands:<br />
+                <br />
+                <table class="style2" border="1">
+                    <tr>
+                        <td class="style7" valign="top">
+                            <a href="pixie://CONFIG">Config</a></td>
+                        <td>
+                            Displays the configuration file (programs.xml).<br />
+                            This is an XML document containing the list of executables that may be 
+                            instantaited by pixie<br />
+                            The configuration file is stored in \ProgramData\Medatech\Pixie<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style7" valign=top>
+                            <a href="pixie://schema">Schema</a> </td>
+                        <td>
+                            Displays the XSD schema that the
+                            <a href="pixie://CONFIG">Config</a> file must adhere to.<br />
+                            Changes to the configuration file are validated using this schema.</td>
+                    </tr>
+                    <tr>
+                        <td class="style5" valign=top>
+                            <a href="pixie://log">log</a>
+                        </td>
+                        <td class="style6">
+                            Displays the pixie log file.<br />
+                            Used for debugging, the log file contains the initialisation parameters and 
+                            stack traces for any errors that occur during execution.</td>
+                    </tr>
+                    <tr>
+                        <td class="style7" valign=top>
+                            <a href="pixie://source">Source</a></td>
+                        <td>
+                            Opens the visual studio solution file for pixie://<br />
+                            Use this to recomplie the pixie:// setup with the required program settings 
+                            pre-configured.<br />
+                            Requires visual studio</td>
+                    </tr>
+                    <tr>
+                        <td class="style7" valign=top>
+                            <a href="pixie://help">help</a>
+                        </td>
+                        <td>
+                            Display this help file.</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <H3>&nbsp;</H3>
+                <H3>URL Parameters:</H3></td>
+        </tr>
+        <tr>
+            <td class="style3">
+                &nbsp;</td>
+            <td>
+                URL parameters in the pixie:// syntax are used to replace placeholders in the 
+                arguments attribute of the program definition (set in the
+                            <a href="pixie://CONFIG">Config</a>).<br />
+                <br />
+                <table class="style2" border="1">
+                    <tr>
+                        <td class="style8" valign="top">
+                paramN=value</td>
+                        <td>
+                            Name pair values used for subsitution in the argument attribute of the program 
+                            definition.<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style8" valign=top>
+                            &amp;paramN=value</td>
+                        <td>
+                            Subsequent name pair values should be deliminated by the ampersand character (&amp;) 
+                            as per HTTP GET syntax.</td>
+                    </tr>
+                    </table>
+            </td>
+        </tr>
+        
+                <tr>
+            <td colspan="2">
+                <H3>&nbsp;</H3>
+                <H3>Permitted Program Defintion:</H3></td>
+        </tr>
+        <tr>
+            <td class="style3">
+                &nbsp;</td>
+            <td>
+                Programs permitted to be launched by pixie:// must be configured in the                             <a href="pixie://CONFIG">Config</a> file.<br />
+                Program definitions must 
+                comply with the
+                            <a href="pixie://schema">Schema</a>.<br />
+                <br />
+                Permitted attributes are as follows:<br />
+                <table class="style2" border="1">
+                    <tr>
+                        <td class="style8" valign="top">
+                            name
+                        <td>
+                            The command name used by the pixie://command<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style8" valign="top">
+                            filename
+                        <td>
+                            The name of the binary file e.g. Notepad.EXE<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style8" valign="top">
+                            arguments
+                        <td>
+                            The arguments that will be passed to the binary.<br />
+                            Arguments may include placeholders that will be replaced at runtime with values 
+                            from the URL Parameters<br />
+                            To use a URL parameter in the argument attribute use the URL paramater name with 
+                            the prefix of &#39;%&#39;.<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style8" valign="top">
+                            workingdirectory
+                        <td>
+                            The location of the binary file<br />
+                            Optional if the binary is installed on the system path.<br />
+                            If included the existance of the file is verfied prior to execution.<br />
+                        </td>
+                    </tr>                                        
+                    </table>
+            </td>
+        </tr>
+                
+    </table>
+    
+    
+<H2>Example:</H2>
+Opening $PATH$\example.txt in Notepad.exe 
+    <br />
+    <br />
+<li>&quot;Notepad&quot; is defined as a permitted application in the <a href="pixie://CONFIG">Config</a>.</li>
+
+<li>The arguments of the definition (arguments=&quot;%file&quot;) 
+allows us to pass in the name of the file to be opened with the URL parameter (file=)</li>
+        
+   
+<BR><BR>Launch Notepad: <a href="pixie://notepad?file=$PATH$\example.txt">pixie://notepad?file=$PATH$\example.txt</a>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+        
+    </BODY>
+</HTML>
